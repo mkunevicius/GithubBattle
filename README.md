@@ -1,6 +1,8 @@
 # GithubBattle
 
-This Application was built for learning purpose as part of 'React ' track at teamtreehouse.com during the 'Build a Simple Dynamic Site with Node.js' course.
+App built on React.js pulling data from Github API.
+
+This Application was built for learning purpose as part of 'React Fundamentals Course' at reactjsprogram.com.
 
 To run the application via command line (on a local machine): npm run start
 
