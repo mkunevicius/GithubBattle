@@ -6,13 +6,9 @@ var Link = ReactRouter.Link;
 var UserDetailsWrapper = require('./UserDetailsWrapper');
 var UserDetails = require('./UserDetails');
 
-function puke(object) {
-  return <pre>{JSON.stringify(object, null, ' ')}</pre>
-}
-
-function ConfirmBattle(props) {
+function ConfirmBattle (props) {
   return props.isLoading === true
-    ? <p> LOADING... </p>
+    ? <p>LOADING</p>
     : <div className="jumbotron col-sm-12 text-center" style={styles.transparentBg}>
         <h1>Confirm Players</h1>
         <div className='col-sm-8 col-sm-offset-2'>
