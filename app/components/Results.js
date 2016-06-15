@@ -1,17 +1,62 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
+var styles = require('../styles');
+var UserDetailsWrapper = require('./UserDetailsWrapper');
+var UserDetails = require('./UserDetails');
+var Link = require('react-router').Link;
+var MainContainer = require('./MainContainer');
 
-function dump (obj) {
-  return <pre>{JSON.stringify(obj, 2, ' ')}</pre>
+function StartOver() {
+  return (
+    <div className='col-sm-12' style={styles.space}>
+      <Link to='/playerOne'>
+        <button type='button' className='btn ntn-lg btn-danger'>Start Over</button>
+      </Link>
+    </div>
+  )
+}
+
+function Tie(props) {
+  return (
+    <MainContainer>
+      <h1>It is a tie!</h1>
+      <StartOver />
+    </MainContainer>
+  )
 }
 
 function Results(props) {
+  // While loading
+  if (props.isLoading === true) {
+    return <p>LOADING</p>
+  }
+  // Check if it's a tie
+  if (props.scores[0] === props.scores[1]) {
+    return (
+      <Tie scores={props.scores} playersInfo={props.playersInfo} />
+    )
+  }
+  // Decide and announce the winner
+  var winningIndex = props.scores[0] > props.scores[1] ? 0 :1;
+  var losingIndex = winningIndex === 0 ? 1 : 0;
   return (
-    <div> Results: {dump(props)} </div>
+    <MainContainer>
+      <h1>Results</h1>
+      <div className='col-sm-8 col-sm-offset-2'>
+        <UserDetailsWrapper header='Winner'>
+          <UserDetails score={props.scores[winningIndex]} info={props.playersInfo[winningIndex]} />
+        </UserDetailsWrapper>
+        <UserDetailsWrapper header='Looser'>
+          <UserDetails score={props.scores[losingIndex]} info={props.playersInfo[losingIndex]} />
+        </UserDetailsWrapper>
+      </div>
+      <StartOver />
+    </MainContainer>
   )
 }
 
 Results.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
   playersInfo: PropTypes.array.isRequired,
   scores: PropTypes.array.isRequired
 }
