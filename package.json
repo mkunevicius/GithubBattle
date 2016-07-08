@@ -1,7 +1,7 @@
 {
   "name": "github-battle",
   "version": "1.0.0",
-  "description": "",
+  "description": "demo app built on react with react-router using webpack, pulling data from github api",
   "main": "index.js",
   "scripts": {
     "production": "webpack -p",
